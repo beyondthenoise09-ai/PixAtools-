@@ -1,0 +1,7 @@
+{
+  "name": "PixAtools",
+  "description": "Professional-grade image utility app for passport photos, background removal, and smart image processing.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
