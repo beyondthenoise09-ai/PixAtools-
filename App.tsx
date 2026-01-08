@@ -1,16 +1,16 @@
 
 import React from 'react';
 import { HashRouter, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
-import Home from './pages/Home';
-import PassportMaker from './pages/PassportMaker';
-import BgRemover from './pages/BgRemover';
-import Enhancer from './pages/Enhancer';
-import Converter from './pages/Converter';
-import Compressor from './pages/Compressor';
-import Resizer from './pages/Resizer';
-import Cropper from './pages/Cropper';
-import PdfMaker from './pages/PdfMaker';
-import RecentFiles from './pages/RecentFiles';
+import Home from './pages/Home.tsx';
+import PassportMaker from './pages/PassportMaker.tsx';
+import BgRemover from './pages/BgRemover.tsx';
+import Enhancer from './pages/Enhancer.tsx';
+import Converter from './pages/Converter.tsx';
+import Compressor from './pages/Compressor.tsx';
+import Resizer from './pages/Resizer.tsx';
+import Cropper from './pages/Cropper.tsx';
+import PdfMaker from './pages/PdfMaker.tsx';
+import RecentFiles from './pages/RecentFiles.tsx';
 
 const App: React.FC = () => {
   return (

@@ -1,9 +1,9 @@
 
 import React, { useState, useRef, useEffect } from 'react';
-import { removeBackground, checkUsageLimit } from '../services/geminiService';
-import { fileToBase64, downloadImage, saveToHistory } from '../services/imageUtils';
-import { PASSPORT_SIZES, BG_COLORS } from '../constants';
-import { PassportSize } from '../types';
+import { removeBackground, checkUsageLimit } from '../services/geminiService.ts';
+import { fileToBase64, downloadImage, saveToHistory } from '../services/imageUtils.ts';
+import { PASSPORT_SIZES, BG_COLORS } from '../constants.ts';
+import { PassportSize } from '../types.ts';
 
 const PassportMaker: React.FC = () => {
   const [original, setOriginal] = useState<string | null>(null);
@@ -54,7 +54,6 @@ const PassportMaker: React.FC = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Use a fixed DPI for calculation (300 DPI)
     const DPI = 300;
     const mmToIn = 1 / 25.4;
     const widthPx = Math.round(selectedSize.widthMm * mmToIn * DPI);
@@ -63,30 +62,19 @@ const PassportMaker: React.FC = () => {
     canvas.width = widthPx;
     canvas.height = heightPx;
 
-    // 1. Draw Background
     ctx.fillStyle = bgColor;
     ctx.fillRect(0, 0, widthPx, heightPx);
 
-    // 2. Draw Person Cutout
     const img = new Image();
     img.src = cutout;
     img.onload = () => {
-      // Logic: Fit the person to the canvas while maintaining aspect ratio
-      // Ensure face is roughly in the upper center
       const imgAspect = img.width / img.height;
-      const canvasAspect = widthPx / heightPx;
-      
-      let drawW, drawH, drawX, drawY;
-
-      // We want the person to fill most of the height but keep shoulders visible
-      drawH = heightPx * 1.1; // Overdraw slightly to ensure background is covered if person is cropped
-      drawW = drawH * imgAspect;
-      drawX = (widthPx - drawW) / 2;
-      drawY = heightPx * 0.1; // Position head slightly below top
+      let drawH = heightPx * 1.1; 
+      let drawW = drawH * imgAspect;
+      let drawX = (widthPx - drawW) / 2;
+      let drawY = heightPx * 0.1; 
 
       ctx.drawImage(img, drawX, drawY, drawW, drawH);
-      
-      // Add a very subtle white border if it's for print
       ctx.strokeStyle = 'rgba(0,0,0,0.05)';
       ctx.lineWidth = 1;
       ctx.strokeRect(0,0, widthPx, heightPx);
@@ -122,7 +110,6 @@ const PassportMaker: React.FC = () => {
         </div>
       ) : (
         <div className="flex flex-col gap-6">
-          {/* Live Preview Card */}
           <div className="bg-white p-4 rounded-3xl shadow-sm border border-gray-100 flex flex-col items-center">
             <div className="mb-4 relative group">
               {processing ? (
@@ -143,7 +130,6 @@ const PassportMaker: React.FC = () => {
             </div>
           </div>
 
-          {/* Controls */}
           <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 flex flex-col gap-6">
             <div>
               <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-3">Size Preset</label>

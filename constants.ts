@@ -1,5 +1,5 @@
 
-import { PassportSize, ToolCategory, Tool } from './types';
+import { PassportSize, ToolCategory, Tool } from './types.ts';
 
 export const PASSPORT_SIZES: PassportSize[] = [
   { name: 'US_PASSPORT', widthMm: 51, heightMm: 51, label: '2 x 2 inch (US Passport)' },

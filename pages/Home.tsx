@@ -1,8 +1,8 @@
 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { TOOLS } from '../constants';
-import { ToolCategory } from '../types';
+import { TOOLS } from '../constants.ts';
+import { ToolCategory } from '../types.ts';
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
